@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 const imageCachedPath = path.resolve('./src/assets/thumb');
 app.get('/', (req: Request, res: Response) => {
-  res.send('Please put more /api to get more info: ' + req);
+  res.send('Please put more /api to get more instructions');
 });
 
 app.use('/api', routers);

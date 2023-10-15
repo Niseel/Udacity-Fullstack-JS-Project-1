@@ -1,16 +1,20 @@
 import express, { NextFunction, Request, Response } from 'express';
 import resizeImage from '../../middleware/images-middleware';
 
-// import path from 'path';
-// const imagePath = path.resolve('./src/assets');
+import path from 'path';
+const imagePath = path.resolve('./src/assets');
 
 const images = express.Router();
 
 images.get('/', async (req: Request, res: Response, next: NextFunction) => {
   const fileName = req.query.fileName;
   //check if user dont put the width or height we will get default value
-  const width = req.query.width ? req.query.width : 300;
-  const height = req.query.height ? req.query.height : 300;
+  const width = req.query.width ? req.query.width : 600;
+  const height = req.query.height ? req.query.height : 600;
+
+  // const filePath_Full = path.resolve(
+  //   `${imagePath}/full/${fileName}-${width}-${height}.png`
+  // );
 
   if (!fileName) {
     next('Please intput the fileName or fileName is incorrect');
