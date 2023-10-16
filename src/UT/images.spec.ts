@@ -7,6 +7,16 @@ import fs from 'fs';
 const request = supertest(app);
 const imagePath = path.resolve('./src/assets');
 
+// Check if the directory exists, and if not, create it
+if (!fs.existsSync(imagePath)) {
+  const mkdirResult = fs.mkdirSync(imagePath, { recursive: true });
+  if (mkdirResult) {
+    console.log('Created path successfully: ' + mkdirResult);
+  } else {
+    console.error('Cannot create directory: ', imagePath);
+  }
+}
+
 describe('Test /images endpoint responses', () => {
   it('gets the api endpoint', async () => {
     const response = await request.get(
@@ -24,7 +34,7 @@ describe('Test /images endpoint responses', () => {
     const newWidth = 600;
     const newHeight = 400;
 
-    const resizedImage = await imageMiddleware.resizeFile(
+    await imageMiddleware.resizeFile(
       'emotional' as string,
       newWidth as number,
       newHeight as number

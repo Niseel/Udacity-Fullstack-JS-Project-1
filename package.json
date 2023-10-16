@@ -10,7 +10,8 @@
     "build": "npx tsc",
     "jasmine": "jasmine",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --config .prettierrc './**/*.{ts,js}' --write"
+    "format": "prettier --config .prettierrc './**/*.{ts,js}' --write",
+    "debug": "node inspect src/index.ts"
   },
   "keywords": [],
   "author": "",
